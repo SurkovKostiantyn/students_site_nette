@@ -46,9 +46,11 @@ CREATE TABLE news
 (
     `news_id` INT NOT NULL AUTO_INCREMENT,
     `news_title` VARCHAR(255) NOT NULL,
+    `news_short_title` VARCHAR(40) NOT NULL,
     `news_content` TEXT NOT NULL,
     `news_user_id` INT NOT NULL,
     `news_user_login` VARCHAR(64) NOT NULL,
+    `image_url` VARCHAR(255) NULL,
     `news_date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `news_date_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`news_id`),
@@ -57,9 +59,6 @@ CREATE TABLE news
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE news ADD COLUMN news_short_title VARCHAR(40);
-alter table news add image_url VARCHAR(255) null;
 
 CREATE TABLE news_comments (
    comment_id INT AUTO_INCREMENT PRIMARY KEY,
