@@ -1,7 +1,8 @@
 .idea/
+need_to_save_it/*
 /temp/cache/
 /vendor/
 composer.lock
 /log/er*
 /log/ex*
-/_need_to_save_it/
+
