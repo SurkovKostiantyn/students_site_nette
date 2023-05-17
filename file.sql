@@ -1,3 +1,5 @@
+DROP database `etistudents`;
+
 CREATE database `etistudents` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `etistudents`.`users` (
