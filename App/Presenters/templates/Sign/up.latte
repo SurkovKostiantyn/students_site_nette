@@ -52,28 +52,21 @@
                     required
             >
 
-            <div n:name="recaptcha"></div>
+{*            <div n:name="recaptcha"></div>*}
 
             <button type="submit" n:name=send class="btn long_btn300" disabled id="submit">Sign up</button>
+
+            <div class="flash error flash_small" id="form_error" onclick="closeMessage(this)"></div>
+            <div n:foreach="$flashes as $flash"
+                    class="flash {$flash->type} flash_small"
+                    onclick="closeMessage(this);">
+                <span>{$flash->message}</span>
+            </div>
         </form>
 
         <i class="fa-solid fa-circle-question"></i>
-        <a
-            type="submit"
-            id="login_btn"
-            n:href="Sign:in"
-        >
-            Вже зареєстровані?
-        </a>
-        <div class="flash error" id="form_error" onclick="closeMessage(this)"></div>
-        {foreach $flashes as $key => $flash}
-            <div id="flash_{$key}"
-                 class="flash {$flash->type}"
-                 onclick="closeMessage(this);"
-            >
-                {$flash->message}
-            </div>
-        {/foreach}
+        <a type="submit" id="login_btn" n:href="Sign:in">Вже зареєстровані? </a>
+
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </div>
 

@@ -13,38 +13,56 @@
                     d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
         </svg>
     </label>
-    <a id="nav_section_header"
-       class="main_nav_link underline" href="/">
+    <a n:href="Home:home"
+        id="nav_section_header"
+        class="main_nav_link underline"
+    >
         <i class="fa-solid fa-house-chimney"></i>
-        <span class="">HOME</span>
+        <span class="menu{if $presenter->getAction() === 'home'} menu_active{/if}">HOME</span>
     </a>
-    <a id="nav_section_about"
-       class="main_nav_link hide_able underline"
-       href="/about">
+    <a n:href="Home:about"
+        id="nav_section_about"
+        class="main_nav_link hide_able underline"
+    >
         <i class="fa-solid fa-circle-info"></i>
-        <span class="">ABOUT</span>
+        <span class="menu{if $presenter->getAction() === 'about'} menu_active{/if}">ABOUT</span>
     </a>
-    <a id="nav_section_news"
+    <a n:href="News:all"
+        id="nav_section_news"
        class="main_nav_link hide_able underline"
-       href="/news">
+    >
         <i class="fa-solid fa-rss"></i>
-        <span class="">NEWS</span>
+        <span class="menu{if $presenter->getName() === 'News'} menu_active{/if}">NEWS</span>
     </a>
-    <a id="nav_section_sp"
+    <a n:href="Pages:parliament"
+        id="nav_section_sp"
        class="main_nav_link hide_able underline"
-       href="/parliament">
+    >
         <i class="fa-solid fa-graduation-cap"></i>
-        <span class="">SP</span>
+        <span class="menu{if $presenter->getAction() === 'parliament'} menu_active{/if}">SP</span>
     </a>
-    <a id="nav_section_contacts"
-       class="main_nav_link hide_able underline"
-       href="/contacts">
+    <a n:href="Home:contacts"
+        id="nav_section_contacts"
+        class="main_nav_link hide_able underline"
+    >
         <i class="fa-solid fa-phone"></i>
-        <span class="">CONTACTS</span>
+        <span class="menu{if $presenter->getAction() === 'contacts'} menu_active{/if}">CONTACTS</span>
     </a>
     {if $user->isLoggedIn()}
-        <a class="main_nav_link" n:href="Sign:out"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+        <a class="main_nav_link hide_able underline" n:href="Profile:show">
+            <i class="fa-solid fa-user"></i>
+            <span class="menu{if $presenter->getName() === 'Profile'} menu_active{/if}">PROFILE
+        </a>
+    {/if}
+    {if $user->isLoggedIn()}
+        <a class="main_nav_link" n:href="Sign:out">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            LOGOUT
+        </a>
     {else}
-        <a class="main_nav_link" n:href="Sign:in"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
+        <a class="main_nav_link" n:href="Sign:in">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            LOGIN
+        </a>
     {/if}
 </nav>

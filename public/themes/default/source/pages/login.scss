@@ -4,6 +4,7 @@
 .login_content{
   @extend .main_content;
   text-align: center;
+  padding-top: 80px;
   &_form{
     width: 300px;
     margin: 20px auto;

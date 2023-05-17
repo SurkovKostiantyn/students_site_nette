@@ -27,7 +27,7 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
     /**
      * @return void
      */
-    public function renderIndex(): void // this function is called when the page is loaded
+    public function renderAll(): void // this function is called when the page is loaded
     {
         $this->setView('news');
         $this->getTemplate()->title = $this->title; // set the title
@@ -51,12 +51,48 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
         }
         $this->getTemplate()->title = $post->news_title;
         $this->getTemplate()->post = $post;
+
+        // get comments
+        $comments = $this->getTemplate()->comments =
+            $this->database
+            ->table('news_comments')
+            ->where('news_id', $postId)
+            ->order('created_at ASC');
+        $this->getTemplate()->comments = $comments;
     }
 
     public function renderAdd(): void
     {
         $this->setView('add');
         $this->getTemplate()->title = $this->title;
+    }
+
+    protected function createComponentAddCommentForm() : Form
+    {
+        $form = new Form;
+        $form->addTextArea('comment', 'Коментар:');
+        $form->addSubmit('send', 'Додати');
+        $form->onSuccess[] = [$this, 'addCommentFormSucceeded'];
+
+        return $form;
+    }
+
+    /**
+     * @throws AbortException
+     */
+    #[NoReturn] public function addCommentFormSucceeded(Form $form, stdClass $data): void
+    {
+        $postId = $this->getParameter('postId'); // news_id
+        $user_id = $this->getUser()->getIdentity()->getId(); // user_id
+
+        $this->database->
+        table('news_comments')->
+        insert([
+            'comment_text' => $data->comment,
+            'user_id' => $user_id,
+            'news_id' => $postId,
+        ]);
+        $this->redirect('News:show', $postId);
     }
 
     protected function createComponentAddNewsForm(): Form
@@ -101,7 +137,6 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
                 ]
             );
             $this->flashMessage('Новину було відредаговано', 'success');
-            $this->redirect('News:show', $postId);
         } else {
             $file = $data->file;
             $file->move('./uploads/news/' . $file->name);
@@ -117,10 +152,14 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
                 'news_user_id' => $news_user_id,
                 'news_user_login' => $news_user_login,
             ]);
-            $this->redirect(':index');
+            $postId = $this->database->table('news')->max('news_id');
         }
+        $this->redirect('News:show', $postId);
     }
 
+    /**
+     * @throws AbortException
+     */
     public function renderEdit(int $postId): void
     {
         $news = $this->database
@@ -153,15 +192,5 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
         if (!$this->getUser()->isLoggedIn()) {
             $this->redirect('Sign:in');
         }
-
-//        $parameters = $this->getParameters();
-//        $firstParameter = $parameters['action'];
-//
-//        if ($firstParameter === 'add') {
-//            if (!$this->getUser()->isInRole('admin')
-//                || !$this->getUser()->isInRole('editor')) {
-//                $this->redirect('News:index');
-//            }
-//        }
     }
 }

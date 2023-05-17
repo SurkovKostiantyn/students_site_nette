@@ -1,12 +1,12 @@
 Holidays = () => {
     // create a new element ib body
-    let body = document.getElementsByTagName('body')[0];
+    let body = document.getElementById('section_header')
     let block = document.createElement('div')
     block.id = 'live_span_holiday';
     body.appendChild(block);
 
     let CorrectMonth = (diff) =>{
-        switch(true){
+        switch (true) {
             case (diff === 1):
                 return " залишився один місяць";
             case (diff < 5):
@@ -16,7 +16,7 @@ Holidays = () => {
         }
     }
     let CorrectDay = (diff) =>{
-        switch(true){
+        switch (true) {
             case (diff === 1):
                 return " залишився один день";
             case (diff < 5):
@@ -46,26 +46,26 @@ Holidays = () => {
         'Дня Збройних Сил України' :  [6,11,"День Збройних Сил України"],
         'Католицького Різдва' :  [25,11,"Католицьке Різдво"]
     };
-    for(let prop in Holidays){
+    for (let prop in Holidays) {
         let HolidaysDate = Holidays[prop]; // [1] - month .. [0] - day .. [2] - Альтернативна назва
         let CorrectM = CorrectMonth(HolidaysDate[1] - month);
         let CorrectD = CorrectDay(HolidaysDate[0] - day);
-        if(HolidaysDate[1] === month){
-            if(HolidaysDate[0] === day){
+        if (HolidaysDate[1] === month) {
+            if (HolidaysDate[0] === day) {
                 msg = 'Сьогодні '+ HolidaysDate[2];
                 console.log('Сьогодні '+ HolidaysDate[2]);
                 break;
-            } 
-        } 
-        if(HolidaysDate[1] <= month && HolidaysDate[0] <= day){
+            }
+        }
+        if (HolidaysDate[1] <= month && HolidaysDate[0] <= day) {
             msg = "Чекаємо Нового Року";
         }
-        if(HolidaysDate[1] > month){
+        if (HolidaysDate[1] > month) {
             msg = "До " + prop  + CorrectM;
             break;
         }
-        if(HolidaysDate[1] === month){
-            if(HolidaysDate[0] >= day){
+        if (HolidaysDate[1] === month) {
+            if (HolidaysDate[0] >= day) {
                 msg = "До " + prop + CorrectD ;
                 break;
             }

@@ -1,6 +1,9 @@
 @use '../common/vars' as *;
 @use '../common/mixins' as *;
 
-.about_content {
+.profile_content {
   @extend .main_content;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
 }

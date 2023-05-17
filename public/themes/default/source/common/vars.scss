@@ -42,6 +42,9 @@ $fontSPMenuSmall: 400 20px/20px "Lato", sans-serif;
 
 $fontBtn: 400 14px/14px "Montserrat", sans-serif;
 
+$fontFlash: 400 16px/16px "Lato", sans-serif;
+$fontFlashBig: 400 18px/100px "Lato", sans-serif;
+
 $fontAwesome: normal normal normal 28px/28px 'FontAwesome', normal;
 
 $screen-min: 320px;
@@ -51,6 +54,7 @@ $screen-xs: 767px;
 $screen-sm: 991px;
 $screen-md: 1199px;
 $screen-lg: 1400px;
+$screen-bg: 1600px;
 
 // @media #{$tablets}{}
 $phones-mini: 'only screen and (max-width: #{$screen-min-s})';
@@ -59,4 +63,5 @@ $phones-big: 'only screen and (max-width: #{$screen-xxs})';
 $tablets: 'only screen and (max-width: #{$screen-xs})';
 $tablets-big: 'only screen and (max-width: #{$screen-sm})';
 $desktop: 'only screen and (max-width: #{$screen-md})';
-$full-hd: 'only screen and (max-width: #{$screen-lg})';
+$desktop-big: 'only screen and (max-width: #{$screen-lg})';
+$desktop-max: 'only screen and (max-width: #{$screen-bg})';

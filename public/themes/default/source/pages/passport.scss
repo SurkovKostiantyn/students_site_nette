@@ -3,15 +3,32 @@
 
 .passport_content{
   @extend .main_content;
+  padding-top: 80px;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $mainTextColor;
   font: $mainFont;
-  @include clip-path-bottom;
+  position: relative;
+
+  p{
+    all: unset;
+  }
+
+  > section{
+    padding: 30px 10% 40px 10%!important;
+    @include box-sizing(border-box);
+    @include clip-path-both;
+    &:nth-child(2n -1){
+        background-color: transparentize($textColor, 0.8);
+    }
+    > * {
+      width: clamp(300px, 50%, 600px) !important;
+      margin: 0 auto;
+    }
+  }
+
+
   h4{
-    margin-top: 20px;
     font: $headerFont;
   }
   b{

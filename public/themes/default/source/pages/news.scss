@@ -3,7 +3,6 @@
 
 .news_content{
   @extend .main_content;
-  @include clip-path-bottom;
 
   display: flex;
   flex-direction: column;

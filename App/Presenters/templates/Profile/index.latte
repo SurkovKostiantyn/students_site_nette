@@ -1,0 +1,17 @@
+{block content}
+    <div class="profile_content">
+        <h1 class="content_heading">Профіль</h1>
+        <p>
+            user ID: {$user->getId()}
+        </p>
+        <p>
+            user login: {$user->getIdentity()->getData()['login']}
+        </p>
+        <p n:foreach="$user->getIdentity()->getRoles() as $value">
+            role: {$value}
+        </p>
+        <p>
+            user email: {$user->getIdentity()->getData()['email']}
+        </p>
+    </div>
+{/block}

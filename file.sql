@@ -60,3 +60,11 @@ CREATE TABLE news
 
 
 ALTER TABLE news ADD COLUMN news_short_title VARCHAR(40);
+
+CREATE TABLE news_comments (
+   comment_id INT AUTO_INCREMENT PRIMARY KEY,
+   user_id INT,
+   news_id INT,
+   comment_text TEXT,
+   created_at TIMESTAMP
+);

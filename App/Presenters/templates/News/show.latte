@@ -3,14 +3,11 @@
     <div class="news_content">
         <h1 class="content_heading">{$post->news_title}</h1>
 
-        {foreach $flashes as $key => $flash}
-            <div id="flash_{$key}"
-                 class="flash {$flash->type}"
-                 onclick="closeMessage(this);"
-            >
-                {$flash->message}
-            </div>
-        {/foreach}
+        <div n:foreach="$flashes as $flash"
+                class="flash {$flash->type} flash_big"
+                onclick="closeMessage(this);">
+            {$flash->message}
+        </div>
 
         <img class="news_content_single_image" src="{$basePath}{$post->image_url}" alt="#1">
         <div class="news_content_single_article">
@@ -18,11 +15,25 @@
         </div>
         <em class="news_content_single_author">
             <span>Автор: {$post->news_user_login}</span>
-            <span>Дата пубікації: {$post->news_date_created}</span>
+            <span>Дата публікації: {$post->news_date_created}</span>
             <span>Дата редагування: {$post->news_date_updated}</span>
        </em>
+
     </div>
 
     <a class="btn news_edit" n:href="News:edit $post->news_id">Редагувати пост</a>
+    <div class="news_content">
+        <div class="news_content_comments">
+            <div class="news_content_comments_form">
+                {control addCommentForm}
+            </div>
+            <div class="news_content_comments_list">
+                <p n:foreach="$comments as $comment">
+                    user ID: {$comment->user_id} <br>
+                    comment: {$comment->comment_text} <br>
+                </p>
+            </div>
+        </div>
+    </div>
 
 {/block}

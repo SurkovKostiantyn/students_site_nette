@@ -1,10 +1,13 @@
 {block content}
     <div class="news_content">
         <h1 class="content_heading">Всі новини</h1>
+        <div n:foreach="$flashes as $flash"
+                class="flash {$flash->type} flash_big"
+                onclick="closeMessage(this);">
+            {$flash->message}
+        </div>
         <div class="section_news_grid">
-
-            {foreach $news as $article}
-                <div class="section_news_grid_item">
+                <div n:foreach="$news as $article" class="section_news_grid_item">
                     <h2>{$article->news_title}</h2>
                     <img src="{$basePath}{$article->image_url}" alt="#1">
                     <p class="short">{$article->news_short_title} ...</p>
@@ -12,8 +15,6 @@
                     <em>Автор: {$article->news_user_login}</em>
                     <em class="read_more"><a n:href="News:show $article->news_id">Детальніше...</a></em>
                 </div>
-            {/foreach}
-
             <div class="section_news_grid_item add">
                 <a class="add_new" n:href="News:add"><i class="fa-solid fa-plus"></i>&nbsp;Додати новину</a>
             </div>

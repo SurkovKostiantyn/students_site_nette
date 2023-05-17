@@ -60,13 +60,12 @@
 .main_content{
   flex: 1 0 auto;
   margin: -20px auto;
-  padding: 0; // отступ для навигации, которая перекрывает контент на 60px
+  padding: 0 0 60px 0; // отступ для навигации, которая перекрывает контент на 60px
   z-index: 10;
   width: 100%;
   min-height: 100vh;
   @include clip-path-both;
-  & > section{
-    min-height: 100vh;
+  & > section:not(.section_contacts){
     width: 100%;
     margin: 0 auto;
 
@@ -95,6 +94,14 @@
       margin: 0 auto 20px auto;
     }
   }
+}
+
+.news_content{
+  padding-bottom: 0;
+}
+
+.news_content:has(.add){
+  padding-bottom: 60px;
 }
 
 .section_background_image {
@@ -156,7 +163,6 @@
 }
 
 .section_about_nav{
-  min-height: 40vh;
   width: 100%;
   padding: 40px 10% 0 10%;
   margin-bottom: 40px;
@@ -262,7 +268,6 @@
 
 .section_news {
   &_grid {
-    min-height: 40vh;
     width: 100%;
     padding: 40px 10%;
     @include box-sizing(border-box);
@@ -272,14 +277,14 @@
     color: $textColor !important;
     position: relative;
     align-items: center;
-    @media #{$tablets-big}{
+    @media #{$desktop-big}{
       grid-template: auto / 1fr 1fr 1fr;
     }
-    @media #{$tablets}{
+    @media #{$desktop}{
       grid-template: auto / 1fr 1fr;
     }
-    @media #{$phones-big}{
-      padding: 20px 5%;
+    @media #{$tablets}{
+      padding: 30px 5%;
       gap: 20px;
       grid-template: auto / 1fr;
     }
@@ -368,16 +373,7 @@
 
 .section_contacts{
   @include clip-path-both;
-  padding-bottom: 80px;
-  &_image {
-    @extend .section_background_image;
-    @include image-2x('/themes/default/images/bg_3.jpg',' /themes/default/images/bg_3_2x.jpg');
-    &:before{
-      content: 'CONTACTS';
-    }
-  }
   &_grid{
-    min-height: 40vh;
     width: 100%;
     margin: 0 auto;
     padding: 40px 10% 10px 10%;

@@ -5,7 +5,7 @@
   @media #{$tablets}{
     &:before {
       @include transition(all 0.3s ease);
-      height: 335px !important;
+      height: 400px !important;
     }
     &:after {
       @include transition(all 0.3s ease);
