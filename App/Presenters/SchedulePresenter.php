@@ -16,14 +16,36 @@ final class SchedulePresenter extends Nette\Application\UI\Presenter
 //        parent::__construct();
 //    }
 
+
+    private function getTheWholeList(): array
+    {
+        return [
+            'First',
+            'Second',
+            'Third',
+        ];
+    }
+
     /**
      * @throws AbortException
      */
     #[NoReturn] public function renderMain(): void // this function is called when the page is loaded
     {
+        if (!isset($this->getTemplate()->list)) {
+            $this->getTemplate()->list = $this->getTheWholeList();
+        }
+
         $this->getTemplate()->title = 'Розклад';
         $this->setView('schedule');
     }
 
 
+    public function handleUpdate(int $id): void
+    {
+        $this->getTemplate()->list = $this->isAjax()
+            ? []
+            : $this->getTheWholeList();
+        $this->getTemplate()->list[$id] = 'Updated item';
+        $this->redrawControl('itemsContainer');
+    }
 }

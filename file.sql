@@ -58,8 +58,8 @@ CREATE TABLE news
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 ALTER TABLE news ADD COLUMN news_short_title VARCHAR(40);
+alter table news add image_url VARCHAR(255) null;
 
 CREATE TABLE news_comments (
    comment_id INT AUTO_INCREMENT PRIMARY KEY,

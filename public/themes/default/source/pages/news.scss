@@ -81,4 +81,18 @@
       }
     }
   }
+  &_comments_list{
+    width: 600px;
+    margin: 0 auto;
+    outline: 1px solid $textColor;
+    padding: 10px;
+    @include border-radius(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    > p {
+      border-bottom: 1px solid $textColor;
+    }
+  }
 }
+
