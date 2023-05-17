@@ -49,6 +49,7 @@ final class NewsPresenter extends Nette\Application\UI\Presenter
         if (!$post) {
             $this->error('Post not found');
         }
+
         $this->getTemplate()->title = $post->news_title;
         $this->getTemplate()->post = $post;
 
