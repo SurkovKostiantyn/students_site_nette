@@ -5,4 +5,5 @@ need_to_save_it/*
 composer.lock
 /log/er*
 /log/ex*
-
+/public/uploads/*
+!/public/uploads/*.file
