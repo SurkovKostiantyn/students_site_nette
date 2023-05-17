@@ -25,9 +25,12 @@
 
     <div class="news_content">
         <div class="news_content_comments">
-            <div class="news_content_comments_form">
-                {control addCommentForm}
-            </div>
+            <form n:name=addCommentForm class="news_content_comments_form">
+                <label for="textarea">Коментар:</label>
+                <textarea n:name=comment id="textarea">
+                </textarea>
+                <button n:name=send>Додати коментар</button>
+            </form>
             <div class="news_content_comments_list">
                 <p n:foreach="$comments as $comment">
                     user ID: {$comment->user_id} <br>

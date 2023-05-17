@@ -81,6 +81,16 @@
       }
     }
   }
+  &_comments_form{
+    width: 600px;
+    margin: 20px auto;
+    label{
+      display: block;
+    }
+    button{
+      display: block;
+    }
+  }
   &_comments_list{
     width: 600px;
     margin: 0 auto;
